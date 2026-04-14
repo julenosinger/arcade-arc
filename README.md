@@ -52,6 +52,15 @@
 
 **File**: `contracts/BunnyReward.sol`
 
+### Deployment Info — LIVE ✅
+| Field | Value |
+|-------|-------|
+| **Contract Address** | `0x95F5eA4BDcbfC80569521B4b67Da53f14cF6dd91` |
+| **Admin Wallet** | `0xBBE4Bf2D53A4A752c0eF21573FA0162BddafCD12` |
+| **TX Hash** | `0x059cd933c6f4847782543d18896d62e83b6432725f19aebcc9dede46445beaed` |
+| **Network** | Arc Testnet — Chain ID: `5042002` |
+| **Explorer** | [View on ArcScan](https://testnet.arcscan.app/address/0x95F5eA4BDcbfC80569521B4b67Da53f14cF6dd91) |
+
 ### Functions
 ```solidity
 depositReward(address token, uint256 amount)  // Admin: deposit USDC/EURC
