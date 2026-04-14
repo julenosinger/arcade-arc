@@ -1361,7 +1361,7 @@ async function showVictoryScreen(data) {
       
       const explorerLink = document.getElementById('tx-explorer-link');
       if (explorerLink && rewardData.txHash) {
-        explorerLink.href = `https://testnet.arc.fun/tx/${rewardData.txHash}`;
+        explorerLink.href = `https://testnet.arcscan.app/tx/${rewardData.txHash}`;
       }
       
       if (claimBtn) {
@@ -1379,7 +1379,7 @@ async function showVictoryScreen(data) {
 }
 
 function openClaimOnExplorer(txHash) {
-  window.open(`https://testnet.arc.fun/tx/${txHash}`, '_blank');
+  window.open(`https://testnet.arcscan.app/tx/${txHash}`, '_blank');
 }
 
 function createFireworks() {

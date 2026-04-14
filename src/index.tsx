@@ -20,15 +20,15 @@ import {
 } from './game/gameState'
 import type { LevelCompletion } from './types/game'
 
-// Arc Testnet Configuration
-const ARC_RPC = 'https://rpc.arctest.io'
-const ADMIN_WALLET = '0x0000000000000000000000000000000000000000' // Replace with real admin wallet
-const CONTRACT_ADDRESS = '0x0000000000000000000000000000000000000000' // Replace after deploy
+// Arc Testnet Configuration — LIVE ✅
+const ARC_RPC = 'https://rpc.testnet.arc.network'
+const ADMIN_WALLET = '0xBBE4Bf2D53A4A752c0eF21573FA0162BddafCD12'
+const CONTRACT_ADDRESS = '0x95F5eA4BDcbfC80569521B4b67Da53f14cF6dd91'
 
-// Token addresses on Arc Testnet
+// Official Arc Testnet token addresses (docs.arc.network)
 const TOKEN_ADDRESSES = {
-  USDC: '0x0000000000000000000000000000000000000001', // Update with real Arc Testnet USDC
-  EURC: '0x0000000000000000000000000000000000000002', // Update with real Arc Testnet EURC
+  USDC: '0x3600000000000000000000000000000000000000', // Arc native USDC (6 decimals)
+  EURC: '0x89B50855Aa3bE2F677cD6303Cec089B5F319D72a', // Arc EURC (6 decimals)
 }
 
 type Bindings = {

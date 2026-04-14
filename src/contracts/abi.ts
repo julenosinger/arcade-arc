@@ -273,24 +273,23 @@ export const ERC20_ABI = [
 
 // Arc Testnet Configuration
 export const ARC_TESTNET = {
-  chainId: "0x" + (3141592).toString(16), // Arc Testnet Chain ID - update if different
+  chainId: "0x" + (5042002).toString(16), // Arc Testnet Chain ID: 5042002
   chainName: "Arc Testnet",
   nativeCurrency: {
-    name: "ARC",
-    symbol: "ARC",
-    decimals: 18
+    name: "USDC",
+    symbol: "USDC",
+    decimals: 6
   },
-  rpcUrls: ["https://testnet.arc.fun/rpc"],
-  blockExplorerUrls: ["https://testnet.arc.fun/explorer"]
+  rpcUrls: ["https://rpc.testnet.arc.network"],
+  blockExplorerUrls: ["https://testnet.arcscan.app"]
 };
 
-// Contract addresses on Arc Testnet
-// UPDATE THESE AFTER DEPLOYMENT
+// Contract addresses on Arc Testnet — DEPLOYED ✅
 export const CONTRACT_ADDRESSES = {
-  BUNNY_REWARD: "0x0000000000000000000000000000000000000000", // Deploy and update
-  USDC: "0x0000000000000000000000000000000000000001",        // Arc Testnet USDC
-  EURC: "0x0000000000000000000000000000000000000002",        // Arc Testnet EURC
+  BUNNY_REWARD: "0x95F5eA4BDcbfC80569521B4b67Da53f14cF6dd91", // Deployed 2026-04-14
+  USDC: "0x3600000000000000000000000000000000000000",          // Arc Testnet native USDC
+  EURC: "0x89B50855Aa3bE2F677cD6303Cec089B5F319D72a",          // Arc Testnet EURC
 };
 
 // Admin wallet address
-export const ADMIN_WALLET = "0x0000000000000000000000000000000000000000"; // Update with real admin wallet
+export const ADMIN_WALLET = "0xBBE4Bf2D53A4A752c0eF21573FA0162BddafCD12"; // Arc Testnet admin wallet
