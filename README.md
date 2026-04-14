@@ -27,7 +27,9 @@
 
 ---
 
-## 🌐 Live URLs
+## 🌐 Live URLs — Cloudflare Pages
+> **Production**: https://arcade-arc.pages.dev
+
 | Endpoint | Description |
 |----------|-------------|
 | `/` | Main game |
@@ -209,5 +211,7 @@ npx wrangler pages secret put CONTRACT_ADDRESS --project-name bunny-builder-game
 ---
 
 **Platform**: Cloudflare Pages  
+**Project Name**: arcade-arc  
+**Production URL**: https://arcade-arc.pages.dev  
 **Status**: ✅ Active  
 **Last Updated**: April 2026
