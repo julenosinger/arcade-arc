@@ -1,0 +1,29 @@
+{
+  "contract_address": "0x95F5eA4BDcbfC80569521B4b67Da53f14cF6dd91",
+  "explorer_url": "https://testnet.arcscan.app/address/0x95F5eA4BDcbfC80569521B4b67Da53f14cF6dd91",
+  "is_verified": true,
+  "verified_at": "2026-04-14T20:14:05Z",
+  "compiler": "v0.8.34+commit.80d5c536",
+  "evm_version": "osaka (default)",
+  "optimizer": {
+    "enabled": true,
+    "runs": 200
+  },
+  "admin": "0xBBE4Bf2D53A4A752c0eF21573FA0162BddafCD12",
+  "supported_tokens": {
+    "USDC": "0x3600000000000000000000000000000000000000",
+    "EURC": "0x89B50855Aa3bE2F677cD6303Cec089B5F319D72a"
+  },
+  "current_state": {
+    "roundActive": true,
+    "currentRound": "1",
+    "currentWinner": "0x0000000000000000000000000000000000000000",
+    "rewardClaimed": false,
+    "usdcBalance": "0.0",
+    "eurcBalance": "0.0"
+  },
+  "security_score": "12/12 (100%)",
+  "network": "Arc Testnet",
+  "chain_id": 5042002,
+  "rpc": "https://rpc.testnet.arc.network"
+}
