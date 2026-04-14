@@ -3,6 +3,9 @@
    Arc Testnet 2D Platformer
    ===================================================== */
 
+/* Pixel font fallback (loads from Google Fonts if available) */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap');
+
 * {
   margin: 0;
   padding: 0;

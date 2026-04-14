@@ -580,8 +580,7 @@ async function generateGameHTML(): Promise<string> {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>🐰 Bunny Builder - Arc Testnet Game</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <!-- Fonts loaded via CSS @import with graceful fallback -->
   <link rel="stylesheet" href="/static/game.css">
 </head>
 <body>
@@ -822,7 +821,6 @@ function generateAdminHTML(): string {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🔐 Bunny Builder - Admin Panel</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/admin.css">
 </head>
 <body>
