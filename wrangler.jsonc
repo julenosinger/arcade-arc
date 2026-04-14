@@ -1,34 +1,16 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "webapp",
+  "name": "bunny-builder-game",
   "compatibility_date": "2026-04-13",
   "pages_build_output_dir": "./dist",
   "compatibility_flags": [
     "nodejs_compat"
-  ]
-  // "vars": {
-  //   "MY_VAR": "my-variable"
-  // },
-  // "kv_namespaces": [
-  //   {
-  //     "binding": "MY_KV_NAMESPACE",
-  //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-  //   }
-  // ],
-  // "r2_buckets": [
-  //   {
-  //     "binding": "MY_BUCKET",
-  //     "bucket_name": "my-bucket"
-  //   }
-  // ],
-  // "d1_databases": [
-  //   {
-  //     "binding": "MY_DB",
-  //     "database_name": "my-database",
-  //     "database_id": ""
-  //   }
-  // ],
-  // "ai": {
-  //   "binding": "AI"
-  // }
+  ],
+  "vars": {
+    "ADMIN_WALLET": "0x0000000000000000000000000000000000000000",
+    "CONTRACT_ADDRESS": "0x0000000000000000000000000000000000000000",
+    "ARC_RPC_URL": "https://rpc.arctest.io",
+    "USDC_ADDRESS": "0x0000000000000000000000000000000000000001",
+    "EURC_ADDRESS": "0x0000000000000000000000000000000000000002"
+  }
 }
