@@ -7,8 +7,8 @@
 
 // ===================== GAME CONFIG =====================
 const GAME_CONFIG = {
-  WIDTH: 800,
-  HEIGHT: 480,
+  WIDTH: 800,   // Fixed logical width - CSS scales canvas to fit screen
+  HEIGHT: 480,  // Fixed logical height
   GRAVITY: 0.55,
   JUMP_FORCE: -13,
   PLAYER_SPEED: 4.5,
@@ -391,21 +391,23 @@ let gameObjects = { platforms: [], enemies: [], coins: [], hazards: [], wrecking
 
 function initCanvas() {
   canvas = document.getElementById('game-canvas');
+  if (!canvas) { console.error('game-canvas not found!'); return; }
   ctx = canvas.getContext('2d');
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
+  // Set fixed logical resolution - CSS will scale to fit screen
+  canvas.width = GAME_CONFIG.WIDTH;
+  canvas.height = GAME_CONFIG.HEIGHT;
+  console.log('Canvas initialized:', canvas.width, 'x', canvas.height);
 }
 
 function resizeCanvas() {
+  // Canvas is fixed at 800x480; CSS scales it to fit the screen.
+  // No-op: dimensions are set once in initCanvas()
   if (!canvas) return;
-  const container = document.getElementById('game-screen');
-  // Use actual dimensions if visible, otherwise use fixed defaults
-  const w = (container && container.offsetWidth > 0) ? container.offsetWidth : 800;
-  const h = (container && container.offsetHeight > 0) ? container.offsetHeight : 480;
-  canvas.width = w;
-  canvas.height = h;
-  GAME_CONFIG.WIDTH = w;
-  GAME_CONFIG.HEIGHT = h;
+  // Only reset if canvas lost its dimensions somehow
+  if (canvas.width !== GAME_CONFIG.WIDTH || canvas.height !== GAME_CONFIG.HEIGHT) {
+    canvas.width = GAME_CONFIG.WIDTH;
+    canvas.height = GAME_CONFIG.HEIGHT;
+  }
 }
 
 // ===================== INPUT HANDLING =====================
@@ -511,14 +513,15 @@ function loadLevel(levelNum) {
   
   gameObjects.exit = { ...def.exit, pulse: 0, collected: false };
   
-  // Update HUD
+  // Start timer
+  gameState.levelTime = def.timeLimit;
+  
+  // Update HUD immediately so timer shows correct value
   updateHUD();
+  updateTimerHUD();
   
   // Show level banner
   showLevelBanner(levelNum, def.name);
-  
-  // Start timer
-  gameState.levelTime = def.timeLimit;
   
   document.getElementById('game-screen').style.background = def.bg;
 }
@@ -744,11 +747,11 @@ function playerHurt() {
 
 // ===================== RENDERER =====================
 function render() {
-  if (!ctx) return;
-  // Guard against zero-size canvas
-  if (canvas.width <= 0 || canvas.height <= 0) {
-    resizeCanvas();
-    return;
+  if (!ctx || !canvas) return;
+  // Ensure canvas has correct dimensions
+  if (canvas.width !== GAME_CONFIG.WIDTH || canvas.height !== GAME_CONFIG.HEIGHT) {
+    canvas.width = GAME_CONFIG.WIDTH;
+    canvas.height = GAME_CONFIG.HEIGHT;
   }
   const W = GAME_CONFIG.WIDTH;
   const H = GAME_CONFIG.HEIGHT;
@@ -1291,12 +1294,9 @@ function startNextLevel(level) {
   gameState.currentLevel = level;
   gameState.lives = Math.min(gameState.lives + 1, GAME_CONFIG.MAX_LIVES); // Bonus life
   showScreen('game-screen');
-  setTimeout(() => {
-    resizeCanvas();
-    loadLevel(level);
-    gameState.isRunning = true;
-    startLevelTimer();
-  }, 50);
+  loadLevel(level);
+  gameState.isRunning = true;
+  startLevelTimer();
 }
 
 // ===================== VICTORY SCREEN =====================
@@ -1447,12 +1447,9 @@ function retryLevel() {
   gameState.lives = GAME_CONFIG.MAX_LIVES;
   gameState.score = 0;
   showScreen('game-screen');
-  setTimeout(() => {
-    resizeCanvas();
-    loadLevel(gameState.currentLevel);
-    gameState.isRunning = true;
-    startLevelTimer();
-  }, 50);
+  loadLevel(gameState.currentLevel);
+  gameState.isRunning = true;
+  startLevelTimer();
 }
 
 // ===================== SCREEN MANAGEMENT =====================
@@ -1466,12 +1463,6 @@ function showScreen(id) {
   if (screen) {
     screen.style.display = id === 'game-screen' ? 'block' : 'flex';
     screen.classList.add('active');
-    // Resize canvas after DOM paint if showing game screen
-    if (id === 'game-screen') {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => resizeCanvas());
-      });
-    }
   }
 }
 
@@ -1590,10 +1581,6 @@ async function loadPoolBalance() {
 // ===================== MAIN GAME LOOP =====================
 function gameLoop() {
   if (gameState.isRunning) {
-    // Auto-resize if canvas has zero dimensions (e.g., after screen switch)
-    if (canvas && (canvas.width === 0 || canvas.height === 0)) {
-      resizeCanvas();
-    }
     updatePhysics();
     render();
   }
@@ -1683,14 +1670,10 @@ function init() {
         
         // Start game
         showScreen('game-screen');
-        // Wait for layout to paint before resizing canvas
-        setTimeout(() => {
-          resizeCanvas();
-          loadLevel(gameState.currentLevel);
-          gameState.isRunning = true;
-          startLevelTimer();
-          playSound('levelComplete');
-        }, 50);
+        loadLevel(gameState.currentLevel);
+        gameState.isRunning = true;
+        startLevelTimer();
+        playSound('levelComplete');
         
       } catch (err) {
         console.error('Session error:', err);
@@ -1703,12 +1686,9 @@ function init() {
         gameState.lives = GAME_CONFIG.MAX_LIVES;
         
         showScreen('game-screen');
-        setTimeout(() => {
-          resizeCanvas();
-          loadLevel(1);
-          gameState.isRunning = true;
-          startLevelTimer();
-        }, 50);
+        loadLevel(1);
+        gameState.isRunning = true;
+        startLevelTimer();
       } finally {
         startBtn.textContent = 'START GAME';
         startBtn.disabled = false;
